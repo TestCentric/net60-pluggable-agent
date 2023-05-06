@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    <RootNamespace>TestCentric.Engine</RootNamespace>
+    <TargetFramework>net462</TargetFramework>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<OutputPath>..\..\bin\$(Configuration)\</OutputPath>
+	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+	<SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\nunit.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Runtime.Remoting" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="NUnit.Engine.Api" Version="3.16.2" />
+    <PackageReference Include="TestCentric.Engine.Api" Version="2.0.0-dev00007" />
+  </ItemGroup>
+  
+</Project>
