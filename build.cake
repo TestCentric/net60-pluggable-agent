@@ -1,7 +1,7 @@
 #tool NuGet.CommandLine&version=6.0.0
 
 // Load the recipe
-#load nuget:?package=TestCentric.Cake.Recipe&version=1.0.0-dev00066
+#load nuget:?package=TestCentric.Cake.Recipe&version=1.0.0
 // Comment out above line and uncomment below for local tests of recipe changes
 //#load ../TestCentric.Cake.Recipe/recipe/*.cake
 
@@ -65,7 +65,7 @@ var NuGetAgentPackage = new NuGetPackage(
 	id: "NUnit.Extension.Net60PluggableAgent",
 	source: "nuget/Net60PluggableAgent.nuspec",
 	basePath: BuildSettings.OutputDirectory,
-	testRunner: new GuiRunner("TestCentric.GuiRunner", "2.0.0-dev00272"),
+	testRunner: new GuiRunner("TestCentric.GuiRunner", "2.0.0-alpha8"),
 	checks: new PackageCheck[] {
 		HasFiles("LICENSE.txt"),
 		HasDirectory("tools").WithFiles("net60-agent-launcher.dll", "nunit.engine.api.dll"),
@@ -79,7 +79,7 @@ var ChocolateyAgentPackage = new ChocolateyPackage(
 	id: "nunit-extension-net60-pluggable-agent",
 	source: "choco/net60-pluggable-agent.nuspec",
 	basePath: BuildSettings.OutputDirectory,
-	testRunner: new GuiRunner("testcentric-gui", "2.0.0-dev00272"),
+	testRunner: new GuiRunner("testcentric-gui", "2.0.0-alpha8"),
 	checks: new PackageCheck[] {
 		HasDirectory("tools").WithFiles("net60-agent-launcher.dll", "nunit.engine.api.dll")
 			.WithFiles("LICENSE.txt", "VERIFICATION.txt"),
