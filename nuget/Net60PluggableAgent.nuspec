@@ -4,18 +4,18 @@
   <metadata>
     <id>NUnit.Extension.Net60PluggableAgent</id>
     <version>0.0.0</version>
-    <title>TestCentric Extension- NetCore21 Pluggable Agent</title>
+    <title>TestCentric Extension- Net 6.0 Pluggable Agent</title>
     <authors>Charlie Poole</authors>
     <owners>Charlie Poole</owners>
     <copyright>Copyright (c) 2023 Charlie Poole</copyright>
     <projectUrl>http://test-centric.org</projectUrl>
     <license type="expression">MIT</license>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <repository type="git" url="https://github.com/TestCentric/netcore21-pluggable-agent"/>
+    <repository type="git" url="https://github.com/TestCentric/net60-pluggable-agent"/>
     <iconUrl>https://test-centric.org/assets/img/testcentric_128x128.png</iconUrl>
     <icon>testcentric.png</icon>
     <language>en-US</language>
-    <tags>testcentric nunit gui runner agent net60</tags>
+    <tags>testcentric nunit gui runner agent net6.0</tags>
     <summary>TestCentric Engine extension for running tests under .NET 6.0</summary>
     <description>This extension allow the TestCentric GUI to run tests under the .NET 6.0 runtime.</description>
     <releaseNotes>https://raw.githubusercontent.com/TestCentric/net60-pluggable-agent/master/CHANGES.txt</releaseNotes>
