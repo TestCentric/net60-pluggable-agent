@@ -18,9 +18,9 @@
     <docsUrl>https://test-centric.org</docsUrl>
     <mailingListUrl>https://groups.google.com/forum/#!forum/nunit-discuss</mailingListUrl>
     <bugTrackerUrl>https://github.com/Testcentric/net60-pluggable-agent/issues</bugTrackerUrl>
-    <tags>net70-pluggable-agent testcentric nunit extension pluggable agent netcoreapp2.1</tags>
-    <summary>TestCentric Engine extension for running tests under .NET Core 2.1</summary>
-    <description>This extension allow the TestCentric GUI to run tests under the .NET Core 2.1 runtime.</description>
+    <tags>net60-pluggable-agent testcentric nunit extension pluggable agent net6.0</tags>
+    <summary>TestCentric Engine extension for running tests under .NET 6.0</summary>
+    <description>This extension allow the TestCentric GUI to run tests under the .NET 6.0 runtime.</description>
     <releaseNotes>https://raw.githubusercontent.com/TestCentric/net60-pluggable-agent/master/CHANGES.txt</releaseNotes>
   </metadata>
   <files>
