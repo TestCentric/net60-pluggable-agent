@@ -16,20 +16,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		GitVersion.yml = GitVersion.yml
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
+		VERIFICATION.txt = VERIFICATION.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mock-assembly", "src\mock-assembly\mock-assembly.csproj", "{3E97A2DE-38A5-4894-AF31-7C32F49E6759}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{68E72A39-0B0F-47DC-93F3-19E55A9C721C}"
-	ProjectSection(SolutionItems) = preProject
-		nuget\Net60PluggableAgent.nuspec = nuget\Net60PluggableAgent.nuspec
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "choco", "choco", "{7679FD0F-A828-4151-805E-6C662EFBFFE5}"
-	ProjectSection(SolutionItems) = preProject
-		choco\net60-pluggable-agent.nuspec = choco\net60-pluggable-agent.nuspec
-		choco\VERIFICATION.txt = choco\VERIFICATION.txt
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "net60-agent-launcher", "src\launcher\net60-agent-launcher.csproj", "{3D3B2910-D77C-4BEC-9433-6234A3257802}"
 EndProject
@@ -124,10 +114,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{68E72A39-0B0F-47DC-93F3-19E55A9C721C} = {49BC1DFB-828F-49F4-B2B4-752AB470481D}
-		{7679FD0F-A828-4151-805E-6C662EFBFFE5} = {49BC1DFB-828F-49F4-B2B4-752AB470481D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CAB7BD1E-1034-47CD-AA8E-FD4AC034193B}
