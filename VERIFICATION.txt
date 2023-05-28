@@ -3,4 +3,4 @@ Verification is intended to assist the Chocolatey moderators and community
 in verifying that this package's contents are trustworthy.
 
 This package is published by the TestCentric Project itself. The binaries are 
-identical to those in the NUnit.Extension.NetCore31PluggableAgent nuget package.
+identical to those in the NUnit.Extension.Net60PluggableAgent nuget package.
