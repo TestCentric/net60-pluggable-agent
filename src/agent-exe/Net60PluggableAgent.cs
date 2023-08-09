@@ -7,12 +7,13 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Security;
+using TestCentric.Engine.Agents;
 using TestCentric.Engine.Internal;
 using TestCentric.Engine.Communication.Transports.Tcp;
 
-namespace TestCentric.Engine.Agents
+namespace TestCentric.Agents
 {
-    public class TestCentricAgent
+    public class Net60PluggableAgent
     {
         static Process AgencyProcess;
         static RemoteTestAgent Agent;
@@ -24,19 +25,21 @@ namespace TestCentric.Engine.Agents
         [STAThread]
         public static void Main(string[] args)
         {
+            Console.WriteLine("Agent starting");
             var options = new AgentOptions(args);
             var pid = Process.GetCurrentProcess().Id;
             var logName = $"testcentric-agent_{pid}.log";
 
             InternalTrace.Initialize(Path.Combine(options.WorkDirectory, logName), options.TraceLevel);
-            log = InternalTrace.GetLogger(typeof(TestCentricAgent));
+            log = InternalTrace.GetLogger(typeof(Net60PluggableAgent));
 
             if (options.DebugAgent || options.DebugTests)
                 TryLaunchDebugger();
 
-            LocateAgencyProcess(options.AgencyPid);
+            if (!string.IsNullOrEmpty(options.AgencyPid))
+                LocateAgencyProcess(options.AgencyPid);
 
-            log.Info($".NET Core 2.1 Agent process {pid} starting");
+            log.Info($".NET 6.0 Agent process {pid} starting");
             log.Info($"  AgentId:   {options.AgentId}");
             log.Info($"  AgencyUrl: {options.AgencyUrl}");
 
