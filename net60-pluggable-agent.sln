@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "aspnetcore-test", "src\aspn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "windows-forms-test", "src\windows-forms-test\windows-forms-test.csproj", "{91C5D6AA-B41C-490A-8CC5-9E015A73A122}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "net60-pluggable-agent-tests", "src\agent-tests\net60-pluggable-agent-tests.csproj", "{EBE8D474-B122-455A-BF40-747D5817234E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "net60-pluggable-agent.tests", "src\agent-tests\net60-pluggable-agent.tests.csproj", "{EBE8D474-B122-455A-BF40-747D5817234E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

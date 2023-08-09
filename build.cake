@@ -12,7 +12,7 @@ BuildSettings.Initialize
 	context: Context,
 	title: "Net60PluggableAgent",
 	solutionFile: "net60-pluggable-agent.sln",
-	unitTests: "net60-agent-launcher.tests.exe",
+	unitTests: "**/*.tests.exe",
 	githubOwner: "TestCentric",
 	githubRepository: "net60-pluggable-agent"
 );
