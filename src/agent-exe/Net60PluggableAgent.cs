@@ -7,9 +7,11 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Security;
+using NUnit.Engine;
 using TestCentric.Engine.Agents;
 using TestCentric.Engine.Internal;
 using TestCentric.Engine.Communication.Transports.Tcp;
+using TestCentric.Engine.Runners;
 
 namespace TestCentric.Agents
 {
@@ -18,6 +20,7 @@ namespace TestCentric.Agents
         static Process AgencyProcess;
         static RemoteTestAgent Agent;
         private static Logger log;
+        static int _pid = Process.GetCurrentProcess().Id;
 
         /// <summary>
         /// The main entry point for the application.
@@ -25,23 +28,30 @@ namespace TestCentric.Agents
         [STAThread]
         public static void Main(string[] args)
         {
-            Console.WriteLine("Agent starting");
             var options = new AgentOptions(args);
-            var pid = Process.GetCurrentProcess().Id;
-            var logName = $"testcentric-agent_{pid}.log";
+            var logName = $"testcentric-agent_{_pid}.log";
 
             InternalTrace.Initialize(Path.Combine(options.WorkDirectory, logName), options.TraceLevel);
             log = InternalTrace.GetLogger(typeof(Net60PluggableAgent));
+            log.Info($".NET 6.0 Agent process {_pid} starting");
 
             if (options.DebugAgent || options.DebugTests)
                 TryLaunchDebugger();
 
-            if (!string.IsNullOrEmpty(options.AgencyPid))
-                LocateAgencyProcess(options.AgencyPid);
+            if (!string.IsNullOrEmpty(options.AgencyUrl))
+                RegisterAndWaitForCommands(options);
+            else
+                ExecuteTestsDirectly(options);
+        }
 
-            log.Info($".NET 6.0 Agent process {pid} starting");
+        private static void RegisterAndWaitForCommands(AgentOptions options)
+        {
             log.Info($"  AgentId:   {options.AgentId}");
             log.Info($"  AgencyUrl: {options.AgencyUrl}");
+            log.Info($"  AgencyPid: {options.AgencyPid}");
+
+            if (!string.IsNullOrEmpty(options.AgencyPid))
+                LocateAgencyProcess(options.AgencyPid);
 
             log.Info("Starting RemoteTestAgent");
             Agent = new RemoteTestAgent(options.AgentId);
@@ -62,9 +72,45 @@ namespace TestCentric.Agents
                 log.Error("Exception in RemoteTestAgent. {0}", ExceptionHelper.BuildMessageAndStackTrace(ex));
                 Environment.Exit(AgentExitCodes.UNEXPECTED_EXCEPTION);
             }
-            log.Info("Agent process {0} exiting cleanly", pid);
+            log.Info("Agent process {0} exiting cleanly", _pid);
 
             Environment.Exit(AgentExitCodes.OK);
+        }
+
+        private static void ExecuteTestsDirectly(AgentOptions options)
+        {
+            if (options.Files.Count == 0)
+                throw new ArgumentException("No file specified for direct execution");
+
+            try
+            {
+                var testFile = options.Files[0];
+
+                var version = typeof(Net60PluggableAgent).Assembly.GetName().Version;
+                Console.WriteLine($"\nNet60PluggableAgent {version}");
+                Console.WriteLine($"\nTest File: {options.Files[0]}");
+
+                var runner = new LocalTestRunner(new NUnit.Engine.TestPackage(testFile));
+                var xmlResult = runner.Run(null, TestFilter.Empty).Xml;
+
+                Console.WriteLine("\nAgent Result");
+                Console.WriteLine($"  Overall result: {xmlResult.GetAttribute("result")}");
+                int cases = int.Parse(xmlResult.GetAttribute("testcasecount"));
+                int passed = int.Parse(xmlResult.GetAttribute("passed"));
+                int failed = int.Parse(xmlResult.GetAttribute("failed"));
+                int warnings = int.Parse(xmlResult.GetAttribute("warnings"));
+                int inconclusive = int.Parse(xmlResult.GetAttribute("inconclusive"));
+                int skipped = int.Parse(xmlResult.GetAttribute("skipped"));
+                Console.WriteLine($"  Cases: {cases}, Passed: {passed}, Failed: {failed}, Warnings: {warnings}, Inconclusive: {inconclusive}, Skipped: {skipped}");
+            }
+            catch(Exception ex)
+            {
+                log.Error(ex.ToString());
+                Environment.Exit(AgentExitCodes.UNEXPECTED_EXCEPTION);
+            }
+
+            Environment.Exit(AgentExitCodes.OK);
+
         }
 
         private static void LocateAgencyProcess(string agencyPid)

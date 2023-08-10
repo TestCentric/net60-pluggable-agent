@@ -20,6 +20,8 @@ namespace TestCentric.Engine.Services
         private const string AGENT_NAME = "net60-pluggable-agent.dll";
         private static string AGENT_DIR = Path.Combine(TestContext.CurrentContext.TestDirectory, "agent");
 
+        private static string TESTS_DIR = Path.Combine(TestContext.CurrentContext.TestDirectory, "tests");
+
         // Constants used for settings
         private const string TARGET_RUNTIME_FRAMEWORK = "TargetRuntimeFramework";
         private const string RUN_AS_X86 = "RunAsX86";
@@ -107,7 +109,6 @@ namespace TestCentric.Engine.Services
                 var process = _launcher.CreateProcess(AGENTID, AGENT_URL, _package);
                 CheckStandardProcessSettings(process);
                 CheckAgentPath(process, true);
-                Console.WriteLine($"{process.StartInfo.FileName} {process.StartInfo.Arguments}");
             }
             else
             {
@@ -170,6 +171,28 @@ namespace TestCentric.Engine.Services
             _package.Settings[LOAD_USER_PROFILE] = true;
             var agentProcess = _launcher.CreateProcess(AGENTID, AGENT_URL, _package);
             Assert.True(agentProcess.StartInfo.LoadUserProfile);
+        }
+
+        [Test]
+        public void ExecuteTestDirectly()
+        {
+            var package = new TestPackage(Path.Combine(TESTS_DIR, "net6.0/mock-assembly.dll"));
+            package.AddSetting("TargetRuntimeFramework", "netcore-6.0");
+
+            Assert.That(_launcher.CanCreateProcess(package));
+            var agentProcess = _launcher.CreateProcess(package);
+            agentProcess.StartInfo.RedirectStandardOutput = true;
+            agentProcess.OutputDataReceived += (sender, e) =>
+            {
+                if (e.Data != null)
+                    Console.WriteLine(e.Data);
+            };
+
+            Console.WriteLine("Launching agent for direct execution");
+            Assert.That(() => agentProcess.Start(), Throws.Nothing);
+            agentProcess.BeginOutputReadLine();
+            Assert.That(agentProcess.WaitForExit(5000), "Agent failed to terminate");
+            Assert.That(agentProcess.ExitCode, Is.EqualTo(0));
         }
     }
 }
