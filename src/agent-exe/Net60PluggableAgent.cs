@@ -12,6 +12,7 @@ using TestCentric.Engine.Agents;
 using TestCentric.Engine.Internal;
 using TestCentric.Engine.Communication.Transports.Tcp;
 using TestCentric.Engine.Runners;
+using System.Xml;
 
 namespace TestCentric.Agents
 {
@@ -102,6 +103,10 @@ namespace TestCentric.Agents
                 int inconclusive = int.Parse(xmlResult.GetAttribute("inconclusive"));
                 int skipped = int.Parse(xmlResult.GetAttribute("skipped"));
                 Console.WriteLine($"  Cases: {cases}, Passed: {passed}, Failed: {failed}, Warnings: {warnings}, Inconclusive: {inconclusive}, Skipped: {skipped}");
+
+                var pathToResultFile = Path.Combine(options.WorkDirectory, "TestResult.xml");
+                WriteResultFile(xmlResult, pathToResultFile);
+                Console.WriteLine($"Saved result file as {pathToResultFile}");
             }
             catch(Exception ex)
             {
@@ -168,6 +173,27 @@ namespace TestCentric.Agents
                     log.Error($"Debugger is not available on all platforms. {nie} {nie.StackTrace}");
                 }
                 Environment.Exit(AgentExitCodes.DEBUGGER_NOT_IMPLEMENTED);
+            }
+        }
+
+        public static void WriteResultFile(XmlNode resultNode, string outputPath)
+        {
+            using (var stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write))
+            using (var writer = new StreamWriter(stream))
+            {
+                WriteResultFile(resultNode, writer);
+            }
+        }
+
+        public static void WriteResultFile(XmlNode resultNode, TextWriter writer)
+        {
+            var settings = new XmlWriterSettings();
+            settings.Indent = true;
+
+            using (XmlWriter xmlWriter = XmlWriter.Create(writer, settings))
+            {
+                xmlWriter.WriteStartDocument(false);
+                resultNode.WriteTo(xmlWriter);
             }
         }
     }
