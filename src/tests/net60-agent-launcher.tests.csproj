@@ -5,7 +5,6 @@
     <RootNamespace>TestCentric.Agent</RootNamespace>
     <TargetFramework>net462</TargetFramework>
 	<GenerateSupportedRuntime>false</GenerateSupportedRuntime>
-	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	<OutputPath>..\..\bin\$(Configuration)\</OutputPath>
 	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	<ApplicationIcon>..\testcentric.ico</ApplicationIcon>
