@@ -7,16 +7,18 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Security;
-using NUnit.Engine;
 using TestCentric.Engine.Agents;
 using TestCentric.Engine.Internal;
 using TestCentric.Engine.Communication.Transports.Tcp;
-using TestCentric.Engine.Runners;
-using System.Xml;
 
 namespace TestCentric.Agents
 {
-    public class Net60PluggableAgent
+    public class Net60Agent : TestCentricAgent<Net60Agent>
+    {
+        public static void Main(string[] args) => TestCentricAgent<Net60Agent>.Execute(args);
+    }
+
+    public class TestCentricAgent<TAgent>
     {
         static Process AgencyProcess;
         static RemoteTestAgent Agent;
@@ -27,14 +29,14 @@ namespace TestCentric.Agents
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        public static void Main(string[] args)
+        public static void Execute(string[] args)
         {
             var options = new AgentOptions(args);
             var logName = $"testcentric-agent_{_pid}.log";
 
             InternalTrace.Initialize(Path.Combine(options.WorkDirectory, logName), options.TraceLevel);
-            log = InternalTrace.GetLogger(typeof(Net60PluggableAgent));
-            log.Info($".NET 6.0 Agent process {_pid} starting");
+            log = InternalTrace.GetLogger(typeof(TAgent));
+            log.Info($"{typeof(TAgent).Name} process {_pid} starting");
 
             if (options.DebugAgent || options.DebugTests)
                 TryLaunchDebugger();

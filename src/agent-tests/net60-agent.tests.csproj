@@ -14,7 +14,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\agent-exe\net60-pluggable-agent.csproj" />
+		<ProjectReference Include="..\agent-exe\net60-agent.csproj" />
 	</ItemGroup>
 
 </Project>

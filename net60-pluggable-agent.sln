@@ -23,13 +23,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mock-assembly", "src\mock-a
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "net60-agent-launcher", "src\launcher\net60-agent-launcher.csproj", "{3D3B2910-D77C-4BEC-9433-6234A3257802}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "net60-pluggable-agent", "src\agent-exe\net60-pluggable-agent.csproj", "{A527285F-5383-483E-972E-8B41FBDE877A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "net60-agent", "src\agent-exe\net60-agent.csproj", "{A527285F-5383-483E-972E-8B41FBDE877A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "aspnetcore-test", "src\aspnetcore-test\aspnetcore-test.csproj", "{847199E4-85FE-44C6-A46E-9A9870215C27}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "windows-forms-test", "src\windows-forms-test\windows-forms-test.csproj", "{91C5D6AA-B41C-490A-8CC5-9E015A73A122}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "net60-pluggable-agent.tests", "src\agent-tests\net60-pluggable-agent.tests.csproj", "{EBE8D474-B122-455A-BF40-747D5817234E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "net60-agent.tests", "src\agent-tests\net60-agent.tests.csproj", "{EBE8D474-B122-455A-BF40-747D5817234E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
