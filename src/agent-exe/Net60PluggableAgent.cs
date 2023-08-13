@@ -41,8 +41,10 @@ namespace TestCentric.Agents
 
             if (!string.IsNullOrEmpty(options.AgencyUrl))
                 RegisterAndWaitForCommands(options);
+            else if (options.Files.Count != 0)
+                new AgentDirectRunner(options).ExecuteTestsDirectly();
             else
-                ExecuteTestsDirectly(options);
+                throw new ArgumentException("No file specified for direct execution");
         }
 
         private static void RegisterAndWaitForCommands(AgentOptions options)
@@ -76,46 +78,6 @@ namespace TestCentric.Agents
             log.Info("Agent process {0} exiting cleanly", _pid);
 
             Environment.Exit(AgentExitCodes.OK);
-        }
-
-        private static void ExecuteTestsDirectly(AgentOptions options)
-        {
-            if (options.Files.Count == 0)
-                throw new ArgumentException("No file specified for direct execution");
-
-            try
-            {
-                var testFile = options.Files[0];
-
-                var version = typeof(Net60PluggableAgent).Assembly.GetName().Version;
-                Console.WriteLine($"\nNet60PluggableAgent {version}");
-                Console.WriteLine($"\nTest File: {options.Files[0]}");
-
-                var runner = new LocalTestRunner(new NUnit.Engine.TestPackage(testFile));
-                var xmlResult = runner.Run(null, TestFilter.Empty).Xml;
-
-                Console.WriteLine("\nAgent Result");
-                Console.WriteLine($"  Overall result: {xmlResult.GetAttribute("result")}");
-                int cases = int.Parse(xmlResult.GetAttribute("testcasecount"));
-                int passed = int.Parse(xmlResult.GetAttribute("passed"));
-                int failed = int.Parse(xmlResult.GetAttribute("failed"));
-                int warnings = int.Parse(xmlResult.GetAttribute("warnings"));
-                int inconclusive = int.Parse(xmlResult.GetAttribute("inconclusive"));
-                int skipped = int.Parse(xmlResult.GetAttribute("skipped"));
-                Console.WriteLine($"  Cases: {cases}, Passed: {passed}, Failed: {failed}, Warnings: {warnings}, Inconclusive: {inconclusive}, Skipped: {skipped}");
-
-                var pathToResultFile = Path.Combine(options.WorkDirectory, "TestResult.xml");
-                WriteResultFile(xmlResult, pathToResultFile);
-                Console.WriteLine($"Saved result file as {pathToResultFile}");
-            }
-            catch(Exception ex)
-            {
-                log.Error(ex.ToString());
-                Environment.Exit(AgentExitCodes.UNEXPECTED_EXCEPTION);
-            }
-
-            Environment.Exit(AgentExitCodes.OK);
-
         }
 
         private static void LocateAgencyProcess(string agencyPid)
@@ -173,27 +135,6 @@ namespace TestCentric.Agents
                     log.Error($"Debugger is not available on all platforms. {nie} {nie.StackTrace}");
                 }
                 Environment.Exit(AgentExitCodes.DEBUGGER_NOT_IMPLEMENTED);
-            }
-        }
-
-        public static void WriteResultFile(XmlNode resultNode, string outputPath)
-        {
-            using (var stream = new FileStream(outputPath, FileMode.Create, FileAccess.Write))
-            using (var writer = new StreamWriter(stream))
-            {
-                WriteResultFile(resultNode, writer);
-            }
-        }
-
-        public static void WriteResultFile(XmlNode resultNode, TextWriter writer)
-        {
-            var settings = new XmlWriterSettings();
-            settings.Indent = true;
-
-            using (XmlWriter xmlWriter = XmlWriter.Create(writer, settings))
-            {
-                xmlWriter.WriteStartDocument(false);
-                resultNode.WriteTo(xmlWriter);
             }
         }
     }

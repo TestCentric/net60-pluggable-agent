@@ -3,7 +3,6 @@
   <PropertyGroup>
     <RootNamespace>TestCentric.Engine</RootNamespace>
     <TargetFramework>net462</TargetFramework>
-	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	<OutputPath>..\..\bin\$(Configuration)\</OutputPath>
 	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
