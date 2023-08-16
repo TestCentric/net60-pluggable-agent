@@ -41,7 +41,11 @@ namespace TestCentric.Agents
 
                 WriteHeader();
 
+#if NETFRAMEWORK
+                var runner = new TestDomainRunner(new NUnit.Engine.TestPackage(testFile));
+#else
                 var runner = new LocalTestRunner(new NUnit.Engine.TestPackage(testFile));
+#endif
                 var xmlResult = runner.Run(null, TestFilter.Empty).Xml;
 
                 WriteRunSettingsReport(xmlResult);

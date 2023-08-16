@@ -60,7 +60,11 @@ namespace TestCentric.Agents
 
             log.Info("Starting RemoteTestAgent");
             Agent = new RemoteTestAgent(options.AgentId);
+#if NETFRAMEWORK
+            Agent.Transport = new TestAgentRemotingTransport(Agent, options.AgencyUrl);
+#else
             Agent.Transport = new TestAgentTcpTransport(Agent, options.AgencyUrl);
+#endif
 
             try
             {
