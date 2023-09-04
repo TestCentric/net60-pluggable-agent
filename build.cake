@@ -1,7 +1,7 @@
 #tool NuGet.CommandLine&version=6.0.0
 
 // Load the recipe
-#load nuget:?package=TestCentric.Cake.Recipe&version=1.0.1-dev00044
+#load nuget:?package=TestCentric.Cake.Recipe&version=1.0.1-dev00045
 // Comment out above line and uncomment below for local tests of recipe changes
 //#load ../TestCentric.Cake.Recipe/recipe/*.cake
 
