@@ -16,7 +16,7 @@ using TestCentric.Engine.Internal;
 
 namespace TestCentric.Engine.Services
 {
-    [Extension]
+    [Extension(Description = "Pluggable agent running tests under .NET 6.0", EngineVersion = "2.0.0")]
     public class Net60AgentLauncher : IAgentLauncher
     {
         private const string RUNTIME_IDENTIFIER = ".NETCoreApp";
