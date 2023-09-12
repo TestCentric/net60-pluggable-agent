@@ -7,7 +7,7 @@
 	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	<SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\..\nunit.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\..\testcentric.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +16,7 @@
   
   <ItemGroup>
     <PackageReference Include="NUnit.Engine.Api" Version="3.16.2" />
-    <PackageReference Include="TestCentric.Engine.Api" Version="2.0.0-beta2" />
+    <PackageReference Include="TestCentric.Engine.Api" Version="2.0.0-dev00001" />
   </ItemGroup>
   
 </Project>
