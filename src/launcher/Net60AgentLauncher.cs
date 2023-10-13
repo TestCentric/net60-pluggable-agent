@@ -9,8 +9,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.Versioning;
 using System.Text;
-using NUnit.Engine;
-using NUnit.Engine.Extensibility;
+using TestCentric.Extensibility;
 using TestCentric.Engine.Extensibility;
 using TestCentric.Engine.Internal;
 
@@ -21,7 +20,7 @@ namespace TestCentric.Engine.Services
     {
         private const string RUNTIME_IDENTIFIER = ".NETCoreApp";
         private static readonly Version RUNTIME_VERSION = new Version(6, 0, 0);
-        private static readonly FrameworkName TARGET_FRAMEWORK = new FrameworkName(RUNTIME_IDENTIFIER, RUNTIME_VERSION);
+        private static readonly string TARGET_FRAMEWORK = new FrameworkName(RUNTIME_IDENTIFIER, RUNTIME_VERSION).ToString();
 
         public TestAgentInfo AgentInfo => new TestAgentInfo(
             GetType().Name,
