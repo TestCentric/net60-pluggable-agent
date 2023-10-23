@@ -17,8 +17,8 @@
 	</PropertyGroup>
 
     <ItemGroup>
-		<PackageReference Include="TestCentric.InternalTrace" Version="1.0.0-dev00002" />
-        <PackageReference Include="TestCentric.Engine.Core" Version="2.0.0-dev00025" />
+		<PackageReference Include="TestCentric.InternalTrace" Version="1.0.0" />
+        <PackageReference Include="TestCentric.Engine.Core" Version="2.0.0-beta3" />
     </ItemGroup>
 	
     <ItemGroup>

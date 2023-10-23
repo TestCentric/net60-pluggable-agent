@@ -15,8 +15,8 @@
   </ItemGroup>
   
   <ItemGroup>
-	  <PackageReference Include="TestCentric.Extensibility.Api" Version="2.0.0-dev00030" />
-	  <PackageReference Include="TestCentric.Engine.Api" Version="2.0.0-dev00007" />
+	  <PackageReference Include="TestCentric.Extensibility.Api" Version="2.0.0" />
+	  <PackageReference Include="TestCentric.Engine.Api" Version="2.0.0-beta3" />
   </ItemGroup>
   
 </Project>
