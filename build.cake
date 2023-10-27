@@ -1,9 +1,7 @@
 // Load the recipe
-#load nuget:?package=TestCentric.Cake.Recipe&version=1.1.0-dev00055
+#load nuget:?package=TestCentric.Cake.Recipe&version=1.1.0-dev00058
 // Comment out above line and uncomment below for local tests of recipe changes
 //#load ../TestCentric.Cake.Recipe/recipe/*.cake
-
-var target = Argument("target", Argument("t", "Default"));
 
 BuildSettings.Initialize
 (
@@ -72,7 +70,7 @@ BuildSettings.Packages.Add(new NuGetPackage(
 				"net60-agent-launcher.dll", "net60-agent-launcher.pdb",
 				"testcentric.extensibility.api.dll", "testcentric.engine.api.dll" ),
 			new DirectoryContent("tools/agent").WithFiles(
-				"agent/net60-agent.dll", "agent/net60-agent.pdb", "agent/net60-agent.dll.config",
+				"agent/net60-agent.dll", "agent/net60-agent.pdb", "agent/net60-agent.dll.config", "agent/TestCentric.Agent.Core.dll",
 				"agent/net60-agent.deps.json", $"agent/net60-agent.runtimeconfig.json",
 				"agent/testcentric.engine.api.dll", "agent/testcentric.engine.core.dll",
 				"agent/testcentric.engine.metadata.dll", "agent/testcentric.extensibility.dll", "agent/TestCentric.InternalTrace.dll",
@@ -93,7 +91,7 @@ BuildSettings.Packages.Add(new ChocolateyPackage(
 					"net60-agent-launcher.dll", "net60-agent-launcher.pdb",
 					"testcentric.extensibility.api.dll", "testcentric.engine.api.dll" ),
 				new DirectoryContent("tools/agent").WithFiles(
-					"agent/net60-agent.dll", "agent/net60-agent.pdb", "agent/net60-agent.dll.config",
+					"agent/net60-agent.dll", "agent/net60-agent.pdb", "agent/net60-agent.dll.config", "agent/TestCentric.Agent.Core.dll",
 					"agent/net60-agent.deps.json", $"agent/net60-agent.runtimeconfig.json",
 					"agent/testcentric.engine.api.dll", "agent/testcentric.engine.core.dll",
 					"agent/testcentric.engine.metadata.dll", "agent/testcentric.extensibility.dll", "agent/TestCentric.InternalTrace.dll",
