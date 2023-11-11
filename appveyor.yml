@@ -1,13 +1,10 @@
 image: Visual Studio 2022
 
-before_build:
-  - cmd: nuget sources add -Name "MyGet" -Source "https://www.myget.org/F/testcentric/api/v3/index.json"
-
 build_script: 
   - ps: .\build.ps1 --Target=AppVeyor --Configuration=Release
   
 # disable built-in tests.
-test: off
+test: false
 
 artifacts:
 - path: package\*.nupkg
