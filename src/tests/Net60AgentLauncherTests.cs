@@ -175,7 +175,7 @@ namespace TestCentric.Engine.Services
         [Test]
         public void ExecuteTestDirectly()
         {
-            var package = new TestPackage(Path.Combine(TESTS_DIR, "net6.0/mock-assembly.dll"));
+            var package = new TestPackage(Path.Combine(TESTS_DIR, "net6.0/mock-assembly.dll")).SubPackages[0];
             package.AddSetting("TargetRuntimeFramework", "netcore-6.0");
 
             Assert.That(_launcher.CanCreateProcess(package));
@@ -186,8 +186,10 @@ namespace TestCentric.Engine.Services
                 if (e.Data != null)
                     Console.WriteLine(e.Data);
             };
+            agentProcess.StartInfo.Arguments += " --trace:Debug";
 
-            Console.WriteLine("Launching agent for direct execution");
+            Console.WriteLine("Launching agent for direct execution with arguments " + agentProcess.StartInfo.Arguments);
+            
             Assert.That(() => agentProcess.Start(), Throws.Nothing);
             agentProcess.BeginOutputReadLine();
             Assert.That(agentProcess.WaitForExit(5000), "Agent failed to terminate");
