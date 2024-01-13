@@ -1,5 +1,5 @@
 // Load the recipe
-#load nuget:?package=TestCentric.Cake.Recipe&version=1.1.0-dev00064
+#load nuget:?package=TestCentric.Cake.Recipe&version=1.1.0-dev00069
 // Comment out above line and uncomment below for local tests of recipe changes
 //#load ../TestCentric.Cake.Recipe/recipe/*.cake
 
@@ -68,13 +68,13 @@ BuildSettings.Packages.Add(new NuGetPackage(
 		.WithDirectories(
 			new DirectoryContent("tools").WithFiles(
 				"net60-agent-launcher.dll", "net60-agent-launcher.pdb",
-				"testcentric.extensibility.api.dll", "testcentric.engine.api.dll" ),
+				"TestCentric.Extensibility.Api.dll", "TestCentric.Engine.Api.dll" ),
 			new DirectoryContent("tools/agent").WithFiles(
 				"agent/net60-agent.dll", "agent/net60-agent.pdb", "agent/net60-agent.dll.config", "agent/TestCentric.Agent.Core.dll",
 				"agent/net60-agent.deps.json", $"agent/net60-agent.runtimeconfig.json",
-				"agent/testcentric.engine.api.dll", "agent/testcentric.engine.core.dll",
-				"agent/testcentric.engine.metadata.dll", "agent/testcentric.extensibility.dll", "agent/TestCentric.InternalTrace.dll",
-				"agent/testcentric.extensibility.api.dll", "agent/Microsoft.Extensions.DependencyModel.dll",
+				"agent/TestCentric.Engine.Api.dll",
+				"agent/TestCentric.Metadata.dll", "agent/TestCentric.Extensibility.dll", "agent/TestCentric.InternalTrace.dll",
+				"agent/TestCentric.Extensibility.Api.dll", "agent/Microsoft.Extensions.DependencyModel.dll",
 				"agent/System.Text.Encodings.Web.dll", "agent/System.Text.Json.dll") ),
 	testRunner: new AgentRunner(BuildSettings.NuGetTestDirectory + "TestCentric.Extension.Net60PluggableAgent." + BuildSettings.PackageVersion + "/tools/agent/net60-agent.dll"),
 	tests: PackageTests) );
@@ -94,9 +94,9 @@ BuildSettings.Packages.Add(new ChocolateyPackage(
 				new DirectoryContent("tools/agent").WithFiles(
 					"agent/net60-agent.dll", "agent/net60-agent.pdb", "agent/net60-agent.dll.config", "agent/TestCentric.Agent.Core.dll",
 					"agent/net60-agent.deps.json", $"agent/net60-agent.runtimeconfig.json",
-					"agent/testcentric.engine.api.dll", "agent/testcentric.engine.core.dll",
-					"agent/testcentric.engine.metadata.dll", "agent/testcentric.extensibility.dll", "agent/TestCentric.InternalTrace.dll",
-					"agent/testcentric.extensibility.api.dll", "agent/Microsoft.Extensions.DependencyModel.dll",
+					"agent/TestCentric.Engine.Api.dll",
+					"agent/TestCentric.Metadata.dll", "agent/TestCentric.Extensibility.dll", "agent/TestCentric.InternalTrace.dll",
+					"agent/TestCentric.Extensibility.Api.dll", "agent/Microsoft.Extensions.DependencyModel.dll",
 					"agent/System.Text.Encodings.Web.dll", "agent/System.Text.Json.dll") ),
 		testRunner: new AgentRunner(BuildSettings.ChocolateyTestDirectory + "testcentric-extension-net60-pluggable-agent." + BuildSettings.PackageVersion + "/tools/agent/net60-agent.dll"),
 		tests: PackageTests) );
