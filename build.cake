@@ -1,5 +1,5 @@
 // Load the recipe
-#load nuget:?package=TestCentric.Cake.Recipe&version=1.1.2
+#load nuget:?package=TestCentric.Cake.Recipe&version=1.2.0
 // Comment out above line and uncomment below for local tests of recipe changes
 //#load ../TestCentric.Cake.Recipe/recipe/*.cake
 
@@ -13,9 +13,15 @@ BuildSettings.Initialize
 	githubRepository: "net60-pluggable-agent"
 );
 
-var MockAssemblyResult = new ExpectedResult("Failed")
+var MockAssemblyResult1 = new ExpectedResult("Failed")
 {
 	Total = 36, Passed = 23, Failed = 5, Warnings = 1, Inconclusive = 1, Skipped = 7,
+	Assemblies = new ExpectedAssemblyResult[] { new ExpectedAssemblyResult("mock-assembly.dll") }
+};
+
+var MockAssemblyResult2 = new ExpectedResult("Failed")
+{
+	Total = 37, Passed = 23, Failed = 5, Warnings = 1, Inconclusive = 1, Skipped = 7,
 	Assemblies = new ExpectedAssemblyResult[] { new ExpectedAssemblyResult("mock-assembly.dll") }
 };
 
@@ -35,19 +41,19 @@ var WindowsFormsResult = new ExpectedResult("Passed")
 var PackageTests = new PackageTest[] {
 	new PackageTest(
 		1, "NetCore11PackageTest", "Run mock-assembly.dll targeting .NET Core 1.1",
-		"tests/netcoreapp1.1/mock-assembly.dll", MockAssemblyResult),
+		"tests/netcoreapp1.1/mock-assembly.dll", MockAssemblyResult1),
 	new PackageTest(
 		1, "NetCore21PackageTest", "Run mock-assembly.dll targeting .NET Core 2.1",
-		"tests/netcoreapp2.1/mock-assembly.dll", MockAssemblyResult),
+		"tests/netcoreapp2.1/mock-assembly.dll", MockAssemblyResult2),
 	new PackageTest(
 		1, "NetCore31PackageTest", "Run mock-assembly.dll targeting .NET Core 3.1",
-		"tests/netcoreapp3.1/mock-assembly.dll", MockAssemblyResult),
+		"tests/netcoreapp3.1/mock-assembly.dll", MockAssemblyResult2),
 	new PackageTest(
 		1, "Net50PackageTest", "Run mock-assembly.dll targeting .NET 5.0",
-		"tests/net5.0/mock-assembly.dll", MockAssemblyResult),
+		"tests/net5.0/mock-assembly.dll", MockAssemblyResult2),
 	new PackageTest(
 		1, "Net60PackageTest", "Run mock-assembly.dll targeting .NET 6.0",
-		"tests/net6.0/mock-assembly.dll", MockAssemblyResult),
+		"tests/net6.0/mock-assembly.dll", MockAssemblyResult2),
 	new PackageTest(
 		1, $"AspNetCore60Test", $"Run test using AspNetCore targeting .NET 6.0",
 		$"tests/net6.0/aspnetcore-test.dll", AspNetCoreResult),

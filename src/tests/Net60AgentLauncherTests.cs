@@ -117,13 +117,13 @@ namespace TestCentric.Engine.Services
 
         private void CheckStandardProcessSettings(Process process)
         {
-            Assert.NotNull(process);
-            Assert.True(process.EnableRaisingEvents, "EnableRaisingEvents");
+            Assert.That(process, Is.Not.Null);
+            Assert.That(process.EnableRaisingEvents, "EnableRaisingEvents");
 
             var startInfo = process.StartInfo;
-            Assert.False(startInfo.UseShellExecute, "UseShellExecute");
-            Assert.True(startInfo.CreateNoWindow, "CreateNoWindow");
-            Assert.False(startInfo.LoadUserProfile, "LoadUserProfile");
+            Assert.That(startInfo.UseShellExecute, Is.False, "UseShellExecute");
+            Assert.That(startInfo.CreateNoWindow, Is.True, "CreateNoWindow");
+            Assert.That(startInfo.LoadUserProfile, Is.False, "LoadUserProfile");
             Assert.That(startInfo.WorkingDirectory, Is.EqualTo(Environment.CurrentDirectory));
 
             var arguments = startInfo.Arguments;
@@ -169,7 +169,7 @@ namespace TestCentric.Engine.Services
             _package.Settings[TARGET_RUNTIME_FRAMEWORK] = runtime;
             _package.Settings[LOAD_USER_PROFILE] = true;
             var agentProcess = _launcher.CreateProcess(AGENTID, AGENT_URL, _package);
-            Assert.True(agentProcess.StartInfo.LoadUserProfile);
+            Assert.That(agentProcess.StartInfo.LoadUserProfile, Is.True);
         }
 
         [Test]
