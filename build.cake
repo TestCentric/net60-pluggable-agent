@@ -89,7 +89,7 @@ BuildSettings.Packages.Add(new NuGetPackage(
 	
 BuildSettings.Packages.Add(new ChocolateyPackage(
 		"testcentric-extension-net60-pluggable-agent",
-		title: ".NET 60 Pluggable Agent",
+		title: "TestCentric Extension - .NET 60 Pluggable Agent",
 		description: "TestCentric engine extension for running tests under .NET 6.0",
 		tags: new [] { "testcentric", "pluggable", "agent", "net60" },
 		packageContent: new PackageContent()
