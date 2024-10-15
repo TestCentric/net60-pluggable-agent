@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <RootNamespace>NUnit.Tests</RootNamespace>
-        <TargetFrameworks>netcoreapp1.1;netcoreapp2.1;netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
+        <TargetFrameworks>netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
         <OutputPath>..\..\bin\$(Configuration)\tests\</OutputPath>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <CheckEolTargetFramework>false</CheckEolTargetFramework>

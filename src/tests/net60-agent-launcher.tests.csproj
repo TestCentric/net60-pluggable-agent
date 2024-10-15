@@ -23,7 +23,7 @@
   <ItemGroup>
 	<PackageReference Include="NUnit" Version="4.1.0" />
 	<PackageReference Include="NUnitLite" Version="4.1.0" />
-    <PackageReference Include="TestCentric.Engine.Api" Version="2.0.0-dev00017" />
+    <PackageReference Include="TestCentric.Engine.Api" Version="2.0.0-beta6" />
   </ItemGroup>
 
   <ItemGroup>
