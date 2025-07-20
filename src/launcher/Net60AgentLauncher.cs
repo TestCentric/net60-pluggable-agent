@@ -18,6 +18,7 @@ namespace TestCentric.Engine.Services
     [Extension(Description = "Pluggable agent running tests under .NET 6.0", EngineVersion = "2.0.0")]
     public class Net60AgentLauncher : IAgentLauncher
     {
+        private const string AGENT_NAME = "testcentric-net60-agent.dll";
         private const string RUNTIME_IDENTIFIER = ".NETCoreApp";
         private static readonly Version RUNTIME_VERSION = new Version(6, 0, 0);
         private static readonly string TARGET_FRAMEWORK = new FrameworkName(RUNTIME_IDENTIFIER, RUNTIME_VERSION).ToString();
@@ -70,9 +71,8 @@ namespace TestCentric.Engine.Services
             if (workDirectory != string.Empty)
                 sb.Append($" --work=").EscapeProcessArgument(workDirectory);
 
-            var agentName = "net60-agent.dll";
             var agentDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "agent");
-            var agentPath = Path.Combine(agentDir, agentName);
+            var agentPath = Path.Combine(agentDir, AGENT_NAME);
             var agentArgs = sb.ToString();
 
             var process = new Process();
