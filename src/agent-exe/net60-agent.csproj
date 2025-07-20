@@ -7,6 +7,7 @@
 		<GenerateSupportedRuntime>false</GenerateSupportedRuntime>
         <OutputPath>..\..\bin\$(Configuration)\agent\</OutputPath>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AssemblyName>testcentric-net60-agent</AssemblyName>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <ApplicationIcon>..\testcentric.ico</ApplicationIcon>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
@@ -17,10 +18,10 @@
 	</PropertyGroup>
 
     <ItemGroup>
-		<PackageReference Include="TestCentric.Agent.Core" Version="2.1.0" />
-		<PackageReference Include="TestCentric.Engine.Api" Version="2.0.0-beta6" />
-		<PackageReference Include="TestCentric.Extensibility" Version="3.0.2" />
-		<PackageReference Include="TestCentric.Metadata" Version="3.0.3" />
+		<PackageReference Include="TestCentric.Agent.Core" Version="2.1.1" />
+		<PackageReference Include="TestCentric.Engine.Api" Version="2.0.0-beta7" />
+		<PackageReference Include="TestCentric.Extensibility" Version="3.1.0" />
+		<PackageReference Include="TestCentric.Metadata" Version="3.0.4" />
 		<PackageReference Include="TestCentric.InternalTrace" Version="1.2.1" />
 		<PackageReference Include="Microsoft.Extensions.DependencyModel" Version="8.0.2" />
 	</ItemGroup>
