@@ -55,8 +55,8 @@ namespace TestCentric.Engine.Services
         [TestCaseSource(nameof(RUNTIMES))]
         public void CanCreateProcess(string runtime)
         {
-            _package.Settings[TARGET_RUNTIME_FRAMEWORK] = runtime;
-            _package.Settings[RUN_AS_X86] = false;
+            _package.Settings.Add(SettingDefinitions.TargetRuntimeFramework.WithValue(runtime));
+            _package.Settings.Add(SettingDefinitions.RunAsX86.WithValue(false));
 
             bool supported = SUPPORTED.Contains(runtime);
             Assert.That(_launcher.CanCreateProcess(_package), Is.EqualTo(supported));
@@ -65,8 +65,8 @@ namespace TestCentric.Engine.Services
         [TestCaseSource(nameof(RUNTIMES))]
         public void CanCreateX86Process(string runtime)
         {
-            _package.Settings[TARGET_RUNTIME_FRAMEWORK] = runtime;
-            _package.Settings[RUN_AS_X86] = true;
+            _package.Settings.Add(SettingDefinitions.TargetRuntimeFramework.WithValue(runtime));
+            _package.Settings.Add(SettingDefinitions.RunAsX86.WithValue(true));
 
             bool supported = SUPPORTED.Contains(runtime);
             Assert.That(_launcher.CanCreateProcess(_package), Is.EqualTo(supported));
@@ -75,8 +75,8 @@ namespace TestCentric.Engine.Services
         [TestCaseSource(nameof(RUNTIMES))]
         public void CreateProcess(string runtime)
         {
-            _package.Settings[TARGET_RUNTIME_FRAMEWORK] = runtime;
-            _package.Settings[RUN_AS_X86] = false;
+            _package.Settings.Add(SettingDefinitions.TargetRuntimeFramework.WithValue(runtime));
+            _package.Settings.Add(SettingDefinitions.RunAsX86.WithValue(false));
 
             if (SUPPORTED.Contains(runtime))
             {
@@ -100,8 +100,8 @@ namespace TestCentric.Engine.Services
         [TestCaseSource(nameof(RUNTIMES))]
         public void CreateX86Process(string runtime)
         {
-            _package.Settings[TARGET_RUNTIME_FRAMEWORK] = runtime;
-            _package.Settings[RUN_AS_X86] = true;
+            _package.Settings.Add(SettingDefinitions.TargetRuntimeFramework.WithValue(runtime));
+            _package.Settings.Add(SettingDefinitions.RunAsX86.WithValue(true));
 
             if (SUPPORTED.Contains(runtime))
             {
@@ -136,8 +136,8 @@ namespace TestCentric.Engine.Services
         public void DebugAgentSetting()
         {
             var runtime = SUPPORTED[0];
-            _package.Settings[TARGET_RUNTIME_FRAMEWORK] = runtime;
-            _package.Settings[DEBUG_AGENT] = true;
+            _package.Settings.Add(SettingDefinitions.TargetRuntimeFramework.WithValue(runtime));
+            _package.Settings.Add(SettingDefinitions.DebugAgent.WithValue(true));
             var agentProcess = _launcher.CreateProcess(AGENTID, AGENT_URL, _package);
             Assert.That(agentProcess.StartInfo.Arguments, Does.Contain("--debug-agent"));
         }
@@ -146,8 +146,8 @@ namespace TestCentric.Engine.Services
         public void TraceLevelSetting()
         {
             var runtime = SUPPORTED[0];
-            _package.Settings[TARGET_RUNTIME_FRAMEWORK] = runtime;
-            _package.Settings[TRACE_LEVEL] = "Debug";
+            _package.Settings.Add(SettingDefinitions.TargetRuntimeFramework.WithValue(runtime));
+            _package.Settings.Add(SettingDefinitions.InternalTraceLevel.WithValue("Debug"));
             var agentProcess = _launcher.CreateProcess(AGENTID, AGENT_URL, _package);
             Assert.That(agentProcess.StartInfo.Arguments, Does.Contain("--trace=Debug"));
         }
@@ -156,8 +156,8 @@ namespace TestCentric.Engine.Services
         public void WorkDirectorySetting()
         {
             var runtime = SUPPORTED[0];
-            _package.Settings[TARGET_RUNTIME_FRAMEWORK] = runtime;
-            _package.Settings[WORK_DIRECTORY] = "WORKDIRECTORY";
+            _package.Settings.Add(SettingDefinitions.TargetRuntimeFramework.WithValue(runtime));
+            _package.Settings.Add(SettingDefinitions.WorkDirectory.WithValue("WORKDIRECTORY"));
             var agentProcess = _launcher.CreateProcess(AGENTID, AGENT_URL, _package);
             Assert.That(agentProcess.StartInfo.Arguments, Does.Contain("--work=WORKDIRECTORY"));
         }
@@ -166,8 +166,8 @@ namespace TestCentric.Engine.Services
         public void LoadUserProfileSetting()
         {
             var runtime = SUPPORTED[0];
-            _package.Settings[TARGET_RUNTIME_FRAMEWORK] = runtime;
-            _package.Settings[LOAD_USER_PROFILE] = true;
+            _package.Settings.Add(SettingDefinitions.TargetRuntimeFramework.WithValue(runtime));
+            _package.Settings.Add(SettingDefinitions.LoadUserProfile.WithValue(true));
             var agentProcess = _launcher.CreateProcess(AGENTID, AGENT_URL, _package);
             Assert.That(agentProcess.StartInfo.LoadUserProfile, Is.True);
         }

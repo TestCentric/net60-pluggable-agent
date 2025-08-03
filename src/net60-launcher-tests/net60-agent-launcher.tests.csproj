@@ -17,13 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\launcher\net60-agent-launcher.csproj" />
+    <ProjectReference Include="..\net60-launcher\net60-agent-launcher.csproj" />
   </ItemGroup>
 
   <ItemGroup>
 	<PackageReference Include="NUnit" Version="4.1.0" />
 	<PackageReference Include="NUnitLite" Version="4.1.0" />
-    <PackageReference Include="TestCentric.Engine.Api" Version="2.0.0-beta7" />
+    <PackageReference Include="TestCentric.Engine.Api" Version="2.0.0-dev00009" />
   </ItemGroup>
 
   <ItemGroup>
