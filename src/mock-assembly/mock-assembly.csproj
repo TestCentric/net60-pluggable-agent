@@ -4,28 +4,10 @@
         <RootNamespace>NUnit.Tests</RootNamespace>
         <TargetFrameworks>netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
         <OutputPath>..\..\bin\$(Configuration)\tests\</OutputPath>
-        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-        <CheckEolTargetFramework>false</CheckEolTargetFramework>
     </PropertyGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp1.1'">
-		<PackageReference Include="NUnit" Version="3.12.0" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1'">
-		<PackageReference Include="NUnit" Version="3.14.0" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-		<PackageReference Include="NUnit" Version="3.14.0" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
-		<PackageReference Include="NUnit" Version="3.14.0" />
-	</ItemGroup>
-
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-		<PackageReference Include="NUnit" Version="4.1.0" />
+	<ItemGroup>
+		<PackageReference Include="NUnit" Version="$(NUnitVersion)" />
 	</ItemGroup>
 
 </Project>
