@@ -4,11 +4,10 @@
     <TargetFrameworks>net6.0</TargetFrameworks>
 	<OutputPath>..\..\bin\$(Configuration)\tests\</OutputPath>
 	<OutputType>Library</OutputType>
-	<CheckEolTargetFramework>false</CheckEolTargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NUnit" Version="4.1.0" />
+    <PackageReference Include="NUnit" Version="$(NUnitVersion)" />
   </ItemGroup>
 
 </Project>

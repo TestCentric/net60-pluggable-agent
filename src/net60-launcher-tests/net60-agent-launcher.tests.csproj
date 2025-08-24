@@ -4,26 +4,18 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>TestCentric.Agent</RootNamespace>
     <TargetFramework>net462</TargetFramework>
-	<GenerateSupportedRuntime>false</GenerateSupportedRuntime>
-	<OutputPath>..\..\bin\$(Configuration)\</OutputPath>
 	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	<ApplicationIcon>..\testcentric.ico</ApplicationIcon>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-	<PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   
-  <ItemGroup>
-    <Reference Include="System.Runtime.Remoting" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\net60-launcher\net60-agent-launcher.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="NUnit" Version="4.1.0" />
-	<PackageReference Include="NUnitLite" Version="4.1.0" />
-    <PackageReference Include="TestCentric.Engine.Api" Version="2.0.0-dev01657" />
+	<PackageReference Include="NUnit" Version="$(NUnitVersion)" />
+	<PackageReference Include="NUnitLite" Version="$(NUnitVersion)" />
+	  <PackageReference Include="TestCentric.Engine.Api" Version="$(EngineVersion)" />
   </ItemGroup>
 
   <ItemGroup>
