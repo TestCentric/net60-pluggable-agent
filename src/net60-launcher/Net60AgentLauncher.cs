@@ -16,6 +16,8 @@ using TestCentric.Engine.Internal;
 namespace TestCentric.Engine.Services
 {
     [Extension(Description = "Pluggable agent running tests under .NET 6.0", EngineVersion = "2.0.0")]
+    [ExtensionProperty("AgentType", "LocalProcess")]
+    [ExtensionProperty("TargetFramework", ".NETCoreApp,Version=6.0")]
     public class Net60AgentLauncher : IAgentLauncher
     {
         private const string AGENT_NAME = "testcentric-net60-agent.dll";
